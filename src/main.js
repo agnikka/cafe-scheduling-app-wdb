@@ -68,12 +68,12 @@ app.post("/signup", async (req, res) => {
   try {
     const { lastname, firstname, email, password, confirmPassword } = req.body;
     if (password !== confirmPassword) {
-      res.status(500).render("error", { title: "error", text: "Passwords do not match" });
+      res.status(400).render("error", { title: "error", text: "Passwords do not match ", err });
       return
     }
     const existingEmail = await User.findOne({ where: { email } });
     if (existingEmail) {
-      res.status(400).render("error", { title: "error", text: "Email already registered." });
+      res.status(400).render("error", { title: "error", text: "Email already registered. ", err });
       return
     }
     const hashedSaltedPassword = getHashedSaltedPassword(password);
@@ -97,10 +97,8 @@ app.get("/login", async (req, res) => {
 app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-    // const hashedSaltedPassword = getHashedSaltedPassword(password);
-    // const users = User.findAll();
     const user = await User.findOne({
-      where: { email}, // password: hashedSaltedPassword 
+      where: { email},
     });
 
     if (user && bcrypt.compareSync(password, user.password)) {
@@ -110,7 +108,7 @@ app.post("/login", async (req, res) => {
       res.redirect("/");
     }
   } catch (err) {
-    res.status(500).render("error", {
+    res.status(400).render("error", {
       title: "error",
       text: "Invalid username or password",
     });
@@ -124,18 +122,33 @@ app.get("/logout", async (req, res) => {
 
 // ALL SCHEDULES
 app.get("/", requireAuth, async (req, res) => {
-  const schedules = Schedule.findAll()
-    // const users = User.findAll()
-    .then((schedules) => {
-      res.render("homeSchedules", { title: "Schedules", schedules });
-    })
-    .catch((err) => {
-      res.status(500).render("error", {
-        title: "error",
-        text: "Something went wrong. ",
-        err,
-      });
-    });
+  try {
+  const schedules = await Schedule.findAll(
+    {
+      include: 
+      { model: User }
+  });
+  res.render("homeSchedules", { title: "Schedules", schedules });
+} catch (err) {
+      res.status(500).render("error", { title: "error", text: "Something went wrong with displaying schedules. ", err } );
+    }
+});
+
+// SPECIFIC USER SCHEDULES
+app.get("/schedules/me", requireAuth, async (req, res) => {
+  const currentUser = req.user;
+  const userId = currentUser.id;
+  try {
+    const schedules = await Schedule.findAll(
+      {
+        include: 
+        { model: User },
+        where: { ID_user: userId },
+      })
+    res.render("userSite", { title: "User's site", schedules });
+  } catch (err) {
+    res.status(400).render("error", { title: "error", text: "Incorrect ID", err });
+  }
 });
 
 // NEW SCHEDULE
@@ -146,7 +159,7 @@ app.get("/new", requireAuth, async (req, res) => {
 app.post("/new", requireAuth, async (req, res) => {
   user = req.user;
   const ID_user = user.id;
-  const { day, start_at, end_at } = req.body; //ID_user, 
+  const { day, start_at, end_at } = req.body;
   try {
     const schedule = await Schedule.create({ ID_user, day, start_at, end_at });
     res.redirect("/new");
@@ -154,21 +167,6 @@ app.post("/new", requireAuth, async (req, res) => {
     res
       .status(500)
       .render("error", { title: "error", text: "Something went wrong. ", err });
-  }
-});
-
-// SPECIFIC USER
-app.get("/users/:userId", requireAuth, async (req, res) => {
-  const currentUser = req.user;
-  const userId = currentUser.id;
-  try {
-    const user = await User.findOne({
-      where: { id: userId },
-      include: "schedules",
-    });
-    res.render("userSite", { title: "User's site", users, user, userId, schedules });
-  } catch (err) {
-    res.status(500).render("error", { title: "error", text: "Incorrect ID" });
   }
 });
 

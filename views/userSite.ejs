@@ -1,0 +1,29 @@
+<h2>Employee info</h2>
+
+<ul>
+    <li class="li-spaced"><p class="li-label">First name:</p> <%= schedules[0].User.firstname %></li>
+    <li class="li-spaced"><p class="li-label">Last name:</p> <%= schedules[0].User.lastname %></li>
+    <li class="li-spaced"><p class="li-label">Email:</p> <%= schedules[0].User.email %></li>
+</ul>
+
+<h2>Employee's schedules</h2>
+
+<table>
+
+    <tr>
+      <th>Day no.</th>
+      <th>Start at</th>
+      <th>End at</th>
+    </tr>
+
+    <% for(let index = 0; index < schedules.length; index++) { %>
+    <tr>
+      <td><%= schedules[index].day %></td>
+      <td><%= schedules[index].start_at %></td>
+      <td><%= schedules[index].end_at %></td>
+    </tr>
+    <% } %>
+
+</table>
+
+<button><a href="/">Back to homepage</a></button>

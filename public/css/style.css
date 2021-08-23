@@ -132,9 +132,7 @@ button {
   font-weight: 600;
 }
 
-/* .footer {
-  position: absolute;
-  bottom: 0;
-  right: 20px;
-  height: 20px;
-} */
+.li-spaced {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
