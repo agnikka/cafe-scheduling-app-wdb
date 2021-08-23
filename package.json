@@ -1,0 +1,43 @@
+{
+  "name": "cafe-scheduling-app-wdb",
+  "version": "1.0.0",
+  "description": "Cafe scheduling app - version with database",
+  "main": "node src/main.js",
+  "scripts": {
+    "start": "node -r dotenv/config src/main.js",
+    "dev": "nodemon -r dotenv/config src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kkalinowska/cafe-scheduling-app-wdb.git"
+  },
+  "author": "Kinga Kalinowska",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kkalinowska/cafe-scheduling-app-wdb/issues"
+  },
+  "homepage": "https://github.com/kkalinowska/cafe-scheduling-app-wdb#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.1",
+    "pg": "^8.7.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.6.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12",
+    "sequelize-cli": "^6.2.0"
+  },
+  "db:create": "sequelize-cli db:create",
+  "db:migrate": "sequelize-cli db:migrate",
+  "db:g:migration": "sequelize-cli migration:generate --name",
+  "db:g:seed": "sequelize-cli seed:generate --name",
+  "db:seeds": "sequelize-cli db:seed:all"
+}

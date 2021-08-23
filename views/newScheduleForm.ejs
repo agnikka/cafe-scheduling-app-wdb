@@ -1,0 +1,18 @@
+<h2>New schedule</h2>
+  
+  <form class="form" id="new-schedule-form" method="POST" action="/new">
+  
+    <label for="day">Day</label>
+    <input type="number" id="day" name="day" min="1" max="7" placeholder="1-7" required>
+    <br>
+    <label for="start_at">Start at</label>
+    <input type="time" id="start_at" name="start_at" required>
+    <br>
+    <label for="end_at">End at</label>
+    <input type="time" id="end_at" name="end_at" required>
+    <br>
+    <input type="submit" value="Create schedule" required>
+  
+    </form>
+  
+  <!-- <button><a href='/'>All Schedules</a></button> -->

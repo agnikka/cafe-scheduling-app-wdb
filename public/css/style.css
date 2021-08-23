@@ -1,0 +1,140 @@
+* {
+  background-color: #9dc0be;
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.wrapper {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.website-title {
+  font-size: 30px;
+  letter-spacing: 1.5px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.website-subtitle {
+  font-size: 15px;
+  letter-spacing: 1.2px;
+  display: inline-block;
+}
+
+.nav {
+  margin-left: 10px;
+  padding-left: 0;
+}
+
+.nav li {
+  display: inline-block;
+  font-size: 20px;
+  margin: 10px 15px 10px 0;
+  padding: 5px;
+  border: 1px solid #d4d4cb;
+  border-radius: 10px;
+  background-color: #fffff5;
+}
+
+a:hover {
+  cursor: pointer;
+  background-color: #fffff5;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+  background-color: #fffff5;
+}
+
+h2 {
+  margin-bottom: 30px;
+}
+
+table,
+th,
+td {
+  border: 1px solid #d4d4cb;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 10px;
+}
+
+th {
+  background-color: #e3c4ab;
+}
+
+td {
+  background-color: #fffff5;
+}
+
+input,
+select {
+  display: block;
+  background-color: #fffff5;
+  width: 50%;
+  height: 30px;
+  border: 1px solid #d4d4cb;
+  border-radius: 10px;
+}
+
+input[type="submit"] {
+  margin: 30px 180px;
+  font-size: 15px;
+  width: 20%;
+  cursor: pointer;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+button {
+  background-color: #fffff5;
+  border: 1px solid #d4d4cb;
+  padding: 5px;
+  margin-top: 15px;
+  margin-bottom: 30px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+/* li a {
+  background-color: #fffff5;
+} */
+
+.error-back-button {
+  cursor: pointer;
+}
+
+.logout {
+  float: right;
+  margin-top: 25px;;
+  border-radius: 10px;
+}
+
+.to-signup button {
+  font-size: 15px;
+  width: 10%;
+}
+
+.to-signup p {
+  font-weight: 600;
+}
+
+/* .footer {
+  position: absolute;
+  bottom: 0;
+  right: 20px;
+  height: 20px;
+} */
